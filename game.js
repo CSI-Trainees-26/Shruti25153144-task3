@@ -161,3 +161,51 @@ for (let i = 0; i < coins.length; i++) {
         c.drawImage(coin, currentCoin.x, currentCoin.y, coinWidth, coinHeight);
     }
 }
+checkCoinCollision();
+for (let i = 0; i < coins.length; i++) {
+    let currentCoin = coins[i];
+    currentCoin.x -= 2;
+}
+coinTimer++;
+if (coinTimer >= 140) {
+    createCoin();
+    coinTimer = 0;
+}
+    gameframe++;
+    requestAnimationFrame(animate);
+
+};
+createCoin();
+animate();
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "ArrowRight") {
+        keys.ArrowRight=true;
+    }
+    if (event.key === "ArrowLeft") {
+        keys.ArrowLeft=true;
+    }
+    if (event.key==="ArrowUp"){
+        if (!jumping){
+            jumping=true;
+            velocityY=-15;
+            frameX=0;
+        }
+    }
+    if(
+        event.key==="ArrowRight" || event.key==="ArrowLeft" || event.key==="ArrowUp"
+    ){
+        event.preventDefault();
+    }
+});
+document.addEventListener("keyup", function(event) {
+    if (event.key=== "ArrowRight"){
+        keys.ArrowRight=false;
+    }
+    if (event.key=== "ArrowLeft"){
+        keys.ArrowLeft=false;
+    }
+});
+
+
+

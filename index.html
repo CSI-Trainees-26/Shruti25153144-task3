@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>game</title>
+    <link rel="stylesheet"  href="index.css">
+</head>
+<body>
+    <div class="box">
+        <canvas id="canvas1" width="1666" height="800"></canvas>
+        <div class="menu">
+            <div class="logo">
+                <img src="image/logo.png" alt="game-logo">
+            </div>
+            <div class="start">
+                <a href="game.html" id="startGame">
+                    <img src="image/start.png" alt="START-GAME">
+                </a>
+            </div>
+            <div class="audio">
+                <img 
+                    id="audioButton" 
+                    src="image/unmute.png" 
+                    alt="Unmute button">
+                    <audio id="gameAudio" loop>
+                        <source src="audio/introaudio.mpeg" type="audio/mpeg">
+                    </audio>
+                    <audio id="startAudio">
+                        <source src="audio/startaudio.mpeg" type="audio/mpeg">
+                    </audio>
+            </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

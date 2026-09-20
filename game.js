@@ -94,3 +94,70 @@ function drawScore() {
         "Score: " + score, 85, 60
     );
 }
+
+function animate(){
+    c.clearRect(0, 0, canvas.width, canvas.height);
+    backgroundX -= backgroundSpeed;
+    if (backgroundX <= -canvas.width) {
+        backgroundX = 0;
+    }
+    c.drawImage( background, backgroundX, 0, canvas.width, canvas.height);
+c.drawImage(background, backgroundX + canvas.width, 0, canvas.width, canvas.height);
+    moving=false;
+    if (keys.ArrowRight){
+        x+=speed;
+        direction="right";
+        moving=true;
+    }
+    if (keys.ArrowLeft){
+        x-=speed;
+        direction="left";
+        moving=true;
+    }
+    if (jumping){
+        y+=velocityY;
+        velocityY+=gravity;
+        if (y>=420){
+            y=420;
+            jumping=false;
+            velocityY=0;
+            frameX=0;
+        }
+    }
+    if (jumping){
+        if (gameframe%staggerframe===0){
+            frameX++;
+            if(frameX>=8){
+                frameX=0;
+            }
+        }
+}
+else if (moving){
+    if(gameframe%staggerframe===0){
+        frameX++;
+        if(frameX>=8){
+            frameX=0;
+        }
+    }
+}
+else{
+    frameX=0;
+}
+let row=0;
+if (jumping){
+    row=2;
+}
+else if (direction==="right"){
+    row=0;
+}
+else if( direction==="left"){
+    row=1;
+}
+c.drawImage(character, frameX * spriteWidth, row * spriteHeight, spriteWidth, spriteHeight, x, y, characterWidth, characterHeight);
+drawScore();
+for (let i = 0; i < coins.length; i++) {
+    let currentCoin = coins[i];
+    if (!currentCoin.collected) {
+        c.drawImage(coin, currentCoin.x, currentCoin.y, coinWidth, coinHeight);
+    }
+}
